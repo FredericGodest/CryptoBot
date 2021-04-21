@@ -10,9 +10,14 @@ try:
 except:
   print("env not found")
 
-bot_token = os.getenv('TOKEN_BOT', config['TOKEN_BOT'])
-channel_general = os.getenv('channel_general', config['channel_general'])
-dev_crypto = os.getenv('dev_crypto', config['dev_crypto'])
+if os.environ.get("ENV") == "PROD":
+  bot_token = os.environ.get("TOKEN_BOT")
+  channel_general = os.environ.get("channel_general")
+  dev_crypto = os.environ.get("dev_crypto")
+else:
+  bot_token = config['TOKEN_BOT']
+  channel_general = config['channel_general']
+  dev_crypto = config['dev_crypto']
 
 CHANNELS = [channel_general, dev_crypto]
 
