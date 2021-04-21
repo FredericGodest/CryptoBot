@@ -56,9 +56,10 @@ async def on_ready():
     #EVERY HOURS
     if str(current_time_hour) == "00:00":
       info = get_crypto_info('1h')
+      print("direct info")
       if info:
         channel = client.get_channel(int(CHANNELS[0]))
-        await channel.send("Place au direct !")
+        await channel.send("Place au crypto-direct !")
         await channel.send(info)
 
     #MORNING
