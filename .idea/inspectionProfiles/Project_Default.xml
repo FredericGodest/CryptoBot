@@ -1,0 +1,58 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyInterpreterInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="44">
+            <item index="0" class="java.lang.String" itemvalue="aniso8601" />
+            <item index="1" class="java.lang.String" itemvalue="kiwisolver" />
+            <item index="2" class="java.lang.String" itemvalue="cycler" />
+            <item index="3" class="java.lang.String" itemvalue="pyparsing" />
+            <item index="4" class="java.lang.String" itemvalue="Flask-RESTful" />
+            <item index="5" class="java.lang.String" itemvalue="Pillow" />
+            <item index="6" class="java.lang.String" itemvalue="yahoofinancials" />
+            <item index="7" class="java.lang.String" itemvalue="multitasking" />
+            <item index="8" class="java.lang.String" itemvalue="python-dateutil" />
+            <item index="9" class="java.lang.String" itemvalue="MarkupSafe" />
+            <item index="10" class="java.lang.String" itemvalue="numpy" />
+            <item index="11" class="java.lang.String" itemvalue="requests" />
+            <item index="12" class="java.lang.String" itemvalue="wallstreet" />
+            <item index="13" class="java.lang.String" itemvalue="Jinja2" />
+            <item index="14" class="java.lang.String" itemvalue="googlefinance" />
+            <item index="15" class="java.lang.String" itemvalue="jdcal" />
+            <item index="16" class="java.lang.String" itemvalue="yfinance" />
+            <item index="17" class="java.lang.String" itemvalue="investpy" />
+            <item index="18" class="java.lang.String" itemvalue="selenium" />
+            <item index="19" class="java.lang.String" itemvalue="certifi" />
+            <item index="20" class="java.lang.String" itemvalue="lxml" />
+            <item index="21" class="java.lang.String" itemvalue="soupsieve" />
+            <item index="22" class="java.lang.String" itemvalue="urllib3" />
+            <item index="23" class="java.lang.String" itemvalue="itsdangerous" />
+            <item index="24" class="java.lang.String" itemvalue="xlrd" />
+            <item index="25" class="java.lang.String" itemvalue="Flask" />
+            <item index="26" class="java.lang.String" itemvalue="beautifulsoup4" />
+            <item index="27" class="java.lang.String" itemvalue="morningstar" />
+            <item index="28" class="java.lang.String" itemvalue="scipy" />
+            <item index="29" class="java.lang.String" itemvalue="six" />
+            <item index="30" class="java.lang.String" itemvalue="Flask-Cors" />
+            <item index="31" class="java.lang.String" itemvalue="Werkzeug" />
+            <item index="32" class="java.lang.String" itemvalue="googlefinance.get" />
+            <item index="33" class="java.lang.String" itemvalue="et-xmlfile" />
+            <item index="34" class="java.lang.String" itemvalue="gunicorn" />
+            <item index="35" class="java.lang.String" itemvalue="click" />
+            <item index="36" class="java.lang.String" itemvalue="yahoo-finance" />
+            <item index="37" class="java.lang.String" itemvalue="simplejson" />
+            <item index="38" class="java.lang.String" itemvalue="chardet" />
+            <item index="39" class="java.lang.String" itemvalue="pandas" />
+            <item index="40" class="java.lang.String" itemvalue="Unidecode" />
+            <item index="41" class="java.lang.String" itemvalue="pytz" />
+            <item index="42" class="java.lang.String" itemvalue="idna" />
+            <item index="43" class="java.lang.String" itemvalue="openpyxl" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
