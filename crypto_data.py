@@ -47,10 +47,12 @@ def get_data(symbol, interval, dict):
     MMC = df['close'].rolling(min_average).mean().to_numpy() #Moving average court terme
     MML = df['close'].rolling(max_average).mean().to_numpy() #moving average long terme
     MM_Volume = df['volume'].rolling(15).mean().to_numpy()  # moving average volume
+    Spread = MMC - MML
 
     df["MMC"] = MMC
     df["MML"] = MML
     df["MM_Volume"] = MM_Volume
+    df["Spread"] = Spread
 
     df["Status"] = pd.Series(dtype='str')
     ## Intersection detection
@@ -59,25 +61,26 @@ def get_data(symbol, interval, dict):
     for i in range(max_average, len(MMC)):
         if MMC[i] > MML[i]:
             STATUS.append("above")
-            if MML[i] > MML[i-1]:
-                state = "In a up-trend. You might wait for sell or you can buy."
+            if MML[i] > MML[i-1] and df["Spread"][i] > df["Spread"][i-1]:
+                state = "In a up-trend. You can buy ! "
             else:
-                state = "Wait for sell or hold-on..."
+                state = "Wait for sell.."
 
         if MMC[i] < MML[i]:
-            if MML[i] > MML[i - 1]:
-                state = "In a up-trend. You might wait for buy or you can buy now."
-            else:
-                state = "Wait for buy or hold on..."
             STATUS.append("below")
+            if MML[i] > MML[i - 1] and df["Spread"][i] < df["Spread"][i-1]:
+                state = "In a up-trend. You can buy ! "
+            else:
+                state = "Wait for buy..."
+
 
         if i > max_average + 2:
             if STATUS[i-max_average] != STATUS[i-(max_average+1)]:
                 if STATUS[i-max_average] == "above":
-                    if df['MM_Volume'][i] >= 50:
-                        state= "Buy Today!!"
+                    if df['MM_Volume'][i] >= 50 and MML[i] > MML[i - 1]:
+                        state = "Buy Today!!"
                     else:
-                        state = "You might buy but it's not a volume-trend."
+                        state = "You can buy."
 
                 elif STATUS[i-max_average] == "below":
                     state = "Sell Today!!"
@@ -113,6 +116,6 @@ def get_status(interval):
 
     return MESSAGE
 
-#MESSAGE = get_status("1h")
+#MESSAGE = get_status("1d")
 #info = "\n".join(MESSAGE)
 #print(info)

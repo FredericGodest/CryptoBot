@@ -36,6 +36,8 @@ def get_crypto_info(interval):
       elif "Sell Today!!" in message:
         message = message.replace("Today", "Now")
         info.append(message)
+      elif "You can buy" in message:
+        info.append(message)
 
     info = '\n'.join(info)
     return info
@@ -56,7 +58,7 @@ async def on_ready():
       info = get_crypto_info('1h')
       if info:
         channel = client.get_channel(int(CHANNELS[0]))
-        await channel.send("Alerte dans l'heure")
+        await channel.send("Place au direct !")
         await channel.send(info)
 
     #MORNING
@@ -74,6 +76,5 @@ async def on_ready():
         channel = client.get_channel(int(CHANNELS[i]))
         await channel.send("Tendance du jour #2")
         await channel.send(info)
-
 
 client.run(bot_token)
