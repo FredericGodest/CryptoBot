@@ -1,0 +1,2 @@
+# CryptoBot
+Discord CryptoBot
