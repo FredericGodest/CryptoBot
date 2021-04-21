@@ -56,19 +56,24 @@ async def on_ready():
       info = get_crypto_info('1h')
       if info:
         channel = client.get_channel(int(CHANNELS[0]))
+        await channel.send("Alerte dans l'heure")
         await channel.send(info)
 
     #MORNING
     if str(current_time_day) == "09:00:00":
       info = get_crypto_info('1d')
-      channel = client.get_channel(int(CHANNELS[0]))
-      await channel.send(info)
+      for i in range(0, len(CHANNELS)):
+        channel = client.get_channel(int(CHANNELS[i]))
+        await channel.send("Tendance du jour #1")
+        await channel.send(info)
 
     #EVENING
-    elif str(current_time_day) == "17:00:00":
+    elif str(current_time_day) == "17:10:00":
       info = get_crypto_info('1d')
-      channel = client.get_channel(int(CHANNELS[0]))
-      await channel.send(info)
+      for i in range(0,len(CHANNELS)):
+        channel = client.get_channel(int(CHANNELS[i]))
+        await channel.send("Tendance du jour #2")
+        await channel.send(info)
 
 
 client.run(bot_token)
