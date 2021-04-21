@@ -1,15 +1,22 @@
 import discord
-import requests
-import json
-from deep_translator import GoogleTranslator
 import crypto_data
-import time
+from datetime import datetime
+from dotenv import dotenv_values
+import os
 
-def read_token():
-  with open("token.txt", 'r') as f:
-    lines = f.readlines()
-    return lines[0].strip()
+#CONFIG ENV PART
+try:
+  config = dotenv_values(".env")
+except:
+  print("env not found")
 
+bot_token = os.getenv('TOKEN_BOT', config['TOKEN_BOT'])
+channel_general = os.getenv('channel_general', config['channel_general'])
+dev_crypto = os.getenv('dev_crypto', config['dev_crypto'])
+
+CHANNELS = [channel_general, dev_crypto]
+
+#GET DATA PART
 def get_crypto_info(interval):
   messages = crypto_data.get_status(interval)
   if interval == '1d':
@@ -29,53 +36,34 @@ def get_crypto_info(interval):
     return info
 
 
-def get_quote():
-  response = requests.get("https://api.chucknorris.io/jokes/random")
-  json_data = json.loads(response.text)
-  quote = json_data['value']
-  translated = GoogleTranslator(source='en' ,target='fr').translate(quote)
-  return(quote, translated)
-
-
-token = read_token()
+#DISCORD PART
 client = discord.Client()
-channel_general = 833746743165714475
 
 @client.event
 async def on_ready():
-  print("Crypto bot ready !")
-
+  print("Crypto Bot Connected !")
   while True:
-    info = get_crypto_info('1h')
-    channel = client.get_channel(channel_general)
-    time.sleep(60*60)
-    await channel.send(info)
+    current_time_day = datetime.now().strftime("%H:%M:%S")
+    current_time_hour = datetime.now().strftime("%M:%S")
 
-
-@client.event
-async def on_message(message):
-  if message.author == client:
-    return
-
-  if message.content.startswith('BOT'):
-    await message.channel.send('Hello !')
-
-  if message.content.startswith('Chuck'):
-    if message.author != client:
-      quote, translated = get_quote()
-      await message.channel.send("english: " + quote)
-      await message.channel.send("traduction: " + translated)
-
-  if message.content.startswith('DailyCrypto'):
-    if message.author != client:
-      info = get_crypto_info('1d')
-      await message.channel.send(info)
-
-  if message.content.startswith('HourCrypto'):
-    if message.author != client:
+    #EVERY HOURS
+    if str(current_time_hour) == "00:00":
       info = get_crypto_info('1h')
-      await message.channel.send(info)
+      if info:
+        channel = client.get_channel(int(CHANNELS[0]))
+        await channel.send(info)
+
+    #MORNING
+    if str(current_time_day) == "09:00:00":
+      info = get_crypto_info('1d')
+      channel = client.get_channel(int(CHANNELS[0]))
+      await channel.send(info)
+
+    #EVENING
+    elif str(current_time_day) == "17:00:00":
+      info = get_crypto_info('1d')
+      channel = client.get_channel(int(CHANNELS[0]))
+      await channel.send(info)
 
 
-#keep_alive()
-client.run(token)
+client.run(bot_token)
