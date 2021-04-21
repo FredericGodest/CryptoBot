@@ -68,7 +68,7 @@ async def on_ready():
         await channel.send(info)
 
     #EVENING
-    elif str(current_time_day) == "17:10:00":
+    elif str(current_time_day) == "17:20:00":
       info = get_crypto_info('1d')
       for i in range(0,len(CHANNELS)):
         channel = client.get_channel(int(CHANNELS[i]))
