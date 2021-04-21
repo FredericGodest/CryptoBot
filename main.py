@@ -3,9 +3,6 @@ import crypto_data
 from datetime import datetime
 from dotenv import dotenv_values
 import os
-from flask import Flask
-
-app = Flask(__name__)
 
 #CONFIG ENV PART
 try:
@@ -80,7 +77,3 @@ async def on_ready():
 
 
 client.run(bot_token)
-
-# BOUCLE
-if __name__ == "__main__":
-    app.run(debug=True)
