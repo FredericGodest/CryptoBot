@@ -62,14 +62,14 @@ def get_data(symbol, interval, dict):
         if MMC[i] > MML[i]:
             STATUS.append("above")
             if MML[i] > MML[i-1] and df["Spread"][i] > df["Spread"][i-1]:
-                state = "In a up-trend. You can buy ! "
+                state = "In a up-trend. You can buy ! (it might be too late) "
             else:
                 state = "Wait for sell.."
 
         if MMC[i] < MML[i]:
             STATUS.append("below")
             if MML[i] > MML[i - 1] and df["Spread"][i] < df["Spread"][i-1]:
-                state = "In a up-trend. You can buy ! "
+                state = "In a up-trend. You can buy ! (it might be early)"
             else:
                 state = "Wait for buy..."
 
@@ -95,7 +95,8 @@ def get_status(interval):
             "ETH": 'ETHUSDT',
             "XRP": "XRPUSDT",
             "LITECOIN": 'LTCUSDT',
-            "DOGECOIN": 'DOGEUSDT'}
+            "DOGECOIN": 'DOGEUSDT',
+            "CAKECOIN": 'CAKEUSDT'}
 
     for i in range(0, len(dict.items())):
         symbol = list(dict.keys())[i]
@@ -116,6 +117,6 @@ def get_status(interval):
 
     return MESSAGE
 
-#MESSAGE = get_status("1d")
-#info = "\n".join(MESSAGE)
-#print(info)
+MESSAGE = get_status("1d")
+info = "\n".join(MESSAGE)
+print(info)
