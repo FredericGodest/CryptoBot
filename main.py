@@ -62,7 +62,7 @@ async def on_ready():
           await channel.send(info)
 
     #MORNING
-    if str(current_time_day) == "08:30:00":
+    if str(current_time_day) == "06:30:00": #2 hours of delay
       info = get_crypto_info('1d')
       for i in range(0, len(CHANNELS)):
         channel = client.get_channel(int(CHANNELS[i]))
@@ -70,7 +70,7 @@ async def on_ready():
         await channel.send(info)
 
     #EVENING
-    elif str(current_time_day) == "17:30:00":
+    elif str(current_time_day) == "15:30:00": #2 hours of delay
       info = get_crypto_info('1d')
       for i in range(0,len(CHANNELS)):
         channel = client.get_channel(int(CHANNELS[i]))
