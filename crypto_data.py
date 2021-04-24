@@ -96,7 +96,8 @@ def get_status(interval):
             "XRP": "XRPUSDT",
             "LITECOIN": 'LTCUSDT',
             "DOGECOIN": 'DOGEUSDT',
-            "CAKECOIN": 'CAKEUSDT'}
+            "CAKECOIN": 'CAKEUSDT',
+            "BNB": "BNBUSDT"}
 
     for i in range(0, len(dict.items())):
         symbol = list(dict.keys())[i]
