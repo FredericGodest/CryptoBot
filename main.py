@@ -65,7 +65,7 @@ async def on_ready():
     if str(current_time_day) == "06:30:00": #2 hours of delay
       info = get_crypto_info('1d')
       for i in range(0, len(CHANNELS)):
-        channel = client.get_channel(int(weekly_crypto)
+        channel = client.get_channel(int(weekly_crypto))
         await channel.send("Tendance du jour #1")
         await channel.send(info)
 
@@ -73,7 +73,7 @@ async def on_ready():
     elif str(current_time_day) == "15:30:00": #2 hours of delay
       info = get_crypto_info('1d')
       for i in range(0,len(CHANNELS)):
-        channel = client.get_channel(weekly_crypto)
+        channel = client.get_channel(int(weekly_crypto))
         await channel.send("Tendance du jour #2")
         await channel.send(info)
 
