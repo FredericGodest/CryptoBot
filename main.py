@@ -12,14 +12,14 @@ except:
 
 if os.environ.get("ENV") == "PROD":
   bot_token = os.environ.get("TOKEN_BOT")
-  channel_general = os.environ.get("channel_general")
   dev_crypto = os.environ.get("dev_crypto")
+  daily_crypto = os.environ.get("daily_crypto")
+  weekly_crypto = os.environ.get("weekly_crypto")
+  CHANNELS = [daily_crypto, dev_crypto, weekly_crypto]
 else:
   bot_token = config['TOKEN_BOT']
   channel_general = config['channel_general']
-  dev_crypto = config['dev_crypto']
-
-CHANNELS = [channel_general, dev_crypto]
+  CHANNELS = [channel_general]
 
 #GET DATA PART
 def get_crypto_info(interval):
