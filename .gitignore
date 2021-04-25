@@ -3,3 +3,4 @@ venv
 data_crypto.py
 keep_alive.py
 .env
+crypto_dataTest.py

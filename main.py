@@ -4,22 +4,18 @@ from datetime import datetime
 from dotenv import dotenv_values
 import os
 
-#CONFIG ENV PART
-try:
-  config = dotenv_values(".env")
-except:
-  print("env not found")
-
+#PROD MOD
 if os.environ.get("ENV") == "PROD":
   bot_token = os.environ.get("TOKEN_BOT")
-  dev_crypto = os.environ.get("dev_crypto")
   daily_crypto = os.environ.get("daily_crypto")
   weekly_crypto = os.environ.get("weekly_crypto")
-  CHANNELS = [daily_crypto, dev_crypto, weekly_crypto]
+
+#TEST MOD
 else:
+  config = dotenv_values(".env")
   bot_token = config['TOKEN_BOT']
-  channel_general = config['channel_general']
-  CHANNELS = [channel_general]
+  daily_crypto = config['channel_general']
+  weekly_crypto = config['channel_general']
 
 #GET DATA PART
 def get_crypto_info(interval):
@@ -36,14 +32,12 @@ def get_crypto_info(interval):
       elif "Sell Today!!" in message:
         message = message.replace("Today", "Now")
         info.append(message)
-
     info = '\n'.join(info)
     return info
 
 
 #DISCORD PART
 client = discord.Client()
-
 @client.event
 async def on_ready():
   print("Crypto Bot Connected !")
@@ -54,7 +48,6 @@ async def on_ready():
     #EVERY HOURS
     if str(current_time_hour) == "00:00":
       info = get_crypto_info('1h')
-      print("direct info")
       if info:
         channel = client.get_channel(int(daily_crypto))
         await channel.send(info)
