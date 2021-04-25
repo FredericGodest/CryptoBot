@@ -55,7 +55,7 @@ the long-term moving average (MML).
 
 Situation | Recommendation
 ------------ | -------------
-If the long-term moving average (MML) is increasing.  | In a up-trend. You can buy ! (it might be too late)
+If the long-term moving average (MML) is increasing and if the spread is increasing. | In a up-trend. You can buy ! (it might be too late)
 Else | Wait for sell..
 
 #### Case 2
@@ -66,7 +66,7 @@ the long-term moving average (MML).
 
 Situation | Recommendation
 ------------ | -------------
-If the long-term moving average (MML) is increasing.  | In a up-trend. You can buy ! (it might be too early)
+If the long-term moving average (MML) is increasing and if the spread is decreasing.  | In a up-trend. You can buy ! (it might be too early)
 Else | Wait for buy..
 
 #### Case 3
