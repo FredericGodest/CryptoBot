@@ -61,7 +61,7 @@ def get_data(symbol, interval, dict):
             if MML[i] > MML[i-1] and df["Spread"][i] > df["Spread"][i-1]:
                 state = "In a up-trend. You can buy ! (it might be too late) "
             else:
-                state = "Wait for sell.."
+                state = "Wait for sell..."
 
         if MMC[i] < MML[i]:
             STATUS.append("below")
