@@ -8,9 +8,9 @@ The first step of this algorithm is to create two curves :
 The two moving average curves are based on the closing prices curve
 on the given period (1 day or 1 hour).
 When the short moving average curve is crossing 
-the long moving average curve by the **bottom** then it is time to buy stocks.
+the long moving average curve by the __bottom__ then it is time to buy stocks.
 When the short moving average curve is crossing 
-the long moving average curve by the **top** then it is time to sell stocks.
+the long moving average curve by the __top__ then it is time to sell stocks.
 
 In our case, we find out that the moving average combination 2/20 seems to
 be optimized for cryptocurrency.
@@ -22,7 +22,7 @@ There is also the MMC curve (2 days moving average) and the MML (20 days moving 
 
 It this plotting you can see that the moving average algorithm advised to 
 sell on 2021-04-18 because the short moving average curve (MMC) is crossing 
-the long moving average curve (MML) by the **top**.
+the long moving average curve (MML) by the __top__.
 
 This algorithm has been a bit enhanced in this
 application because trend volume, the derivative
@@ -49,7 +49,7 @@ Discord channel.
 
 ## Recommendation dictionary
 #### Case 1
-When the short term moving average (MMC) is higher than
+When the short term moving average (MMC) is __higher__ than
 the long-term moving average (MML).
 
 ![Case 1](/pictures/Case1.png)
@@ -60,7 +60,7 @@ If the long-term moving average (MML) is increasing.  | In a up-trend. You can b
 Else | Wait for sell..
 
 #### Case 2
-When the short term moving average (MMC) is lower than
+When the short term moving average (MMC) is __lower__ than
 the long-term moving average (MML).
 
 ![Case 2](/pictures/Case2.png)
@@ -72,7 +72,7 @@ Else | Wait for buy..
 
 #### Case 3
 When the short term moving average (MMC) is crossing
-the long term moving average (MML) by the bottom.
+the long term moving average (MML) by the __bottom__.
 
 ![Case 3](/pictures/Case3.png)
 
