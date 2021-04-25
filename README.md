@@ -73,7 +73,7 @@ Else | Wait for buy..
 When the short term moving average (MMC) is crossing
 the long term moving average (MML) from __below__.
 
-![Case 3](/pictures/Case3.png)
+![Case 3](/pictures/Case4.png)
 
 Situation | Recommendation
 ------------ | -------------
@@ -85,7 +85,7 @@ Else | Wait.
 When the short term moving average (MMC) is crossing
 the long term moving average (MML) from __above__.
 
-![Case 4](/pictures/Case4.png)
+![Case 4](/pictures/Case3.png)
 
 Situation | Recommendation
 ------------ | -------------
