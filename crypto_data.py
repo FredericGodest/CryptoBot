@@ -42,9 +42,9 @@ def get_data(symbol, interval, dict):
     df['volume'] = df['volume'].astype("float") / max(df['volume'].astype("float")) * 100
 
     #Moving Average calculation
-    MMC = df['close'].rolling(min_average).mean().to_numpy() #Moving average court terme
-    MML = df['close'].rolling(max_average).mean().to_numpy() #Moving average long terme
-    MM_Volume = df['volume'].rolling(min_average).mean().to_numpy()  #Moving average volume
+    MMC = df['close'].ewm(span=min_average).mean().to_numpy() #Exponential Moving average short terme
+    MML = df['close'].ewm(span=max_average).mean().to_numpy() #Exponential Moving average long terme
+    MM_Volume = df['volume'].ewm(span=min_average).mean().to_numpy()  #Moving average volume
     Spread = MMC - MML
 
     df["MMC"] = MMC
