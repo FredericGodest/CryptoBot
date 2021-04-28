@@ -6,12 +6,14 @@ import os
 
 #PROD MOD
 if os.environ.get("ENV") == "PROD":
+  import crypto_data
   bot_token = os.environ.get("TOKEN_BOT")
   daily_crypto = os.environ.get("daily_crypto")
   weekly_crypto = os.environ.get("weekly_crypto")
 
 #TEST MOD
 else:
+  import crypto_dataTest as crypto_data
   config = dotenv_values(".env")
   bot_token = config['TOKEN_BOT']
   daily_crypto = config['channel_general']
@@ -60,7 +62,7 @@ async def on_ready():
       await channel.send(info)
 
     #EVENING
-    elif str(current_time_day) == "15:30:00": #2 hours of delay
+    elif str(current_time_day) == "15:30:14": #2 hours of delay
       info = get_crypto_info('1d')
       channel = client.get_channel(int(weekly_crypto))
       await channel.send("Tendance du jour #2")

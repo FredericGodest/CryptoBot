@@ -103,7 +103,7 @@ def get_status(interval):
         df, success = get_data(symbol, interval, dict)
 
         if success:
-            msg = list(dict.keys())[i] + " [" + str(df['close'][-1]) + "$] => " + df['Status'][-1]
+            msg = list(dict.keys())[i] + " = " + str(df['close'][-1]) + "$ :arrow_right: " + df['Status'][-1]
         else:
             msg = "Symbol " + list(dict.keys())[i] + " do not exist."
 
