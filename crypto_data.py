@@ -59,29 +59,29 @@ def get_data(symbol, interval, dict):
         if MMC[i] > MML[i]:
             STATUS.append("above")
             if MML[i] > MML[i-1] and df["Spread"][i] > df["Spread"][i-1]:
-                state = "In a up-trend. You can buy ! (it might be too late) "
+                state = "In a up-trend. You can buy ! (it might be too late) :white_sun_cloud: "
             else:
-                state = "Wait for sell..."
+                state = "Wait for sell... :cloud: "
 
         if MMC[i] < MML[i]:
             STATUS.append("below")
             if MML[i] > MML[i - 1] and df["Spread"][i] < df["Spread"][i-1]:
-                state = "In a up-trend. You can buy ! (it might be early)"
+                state = "In a up-trend. You can buy ! (it might be early) :white_sun_cloud: "
             else:
-                state = "Wait for buy..."
+                state = "Wait for buy... :cloud: "
 
         if i > max_average + min_average:
             if STATUS[i-max_average] != STATUS[i-(max_average+1)]:
                 if STATUS[i-max_average] == "above":
                     if df['MM_Volume'][i] >= 50 and MML[i] > MML[i - 1]:
-                        state = "Buy Today!!"
+                        state = "Buy Today!! :sunny: "
                     elif MML[i] > MML[i - 1]:
-                        state = "You can buy but it's not a volume trend"
+                        state = "You can buy but it's not a volume trend :white_sun_small_cloud: "
                     else:
-                        state = "Wait"
+                        state = "Wait :cloud: "
 
                 elif STATUS[i-max_average] == "below":
-                    state = "Sell Today!!"
+                    state = "Sell Today!! :zap: "
 
         df['Status'][i] = state
     success = True
@@ -96,7 +96,8 @@ def get_status(interval):
             "LITECOIN": 'LTCUSDT',
             "DOGECOIN": 'DOGEUSDT',
             "CAKECOIN": 'CAKEUSDT',
-            "BNB": "BNBUSDT"}
+            "BNB": "BNBUSDT",
+            "VET": "VETUSDT"}
 
     for i in range(0, len(dict.items())):
         symbol = list(dict.keys())[i]
