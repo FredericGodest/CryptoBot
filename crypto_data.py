@@ -55,32 +55,32 @@ def get_data(symbol, interval, dict):
 
     ## Intersection detection
     STATUS = []
-    for i in range(max_average, len(MMC)):
-        if MMC[i] > MML[i]:
+    for i in range(0, len(MMC)):
+        if MMC[i] >= MML[i]:
             STATUS.append("above")
             if MML[i] > MML[i-1] and df["Spread"][i] > df["Spread"][i-1]:
                 state = "In a up-trend. You can buy ! (it might be too late) :white_sun_cloud: "
             else:
                 state = "Wait for sell... :cloud: "
 
-        if MMC[i] < MML[i]:
+        elif MMC[i] < MML[i]:
             STATUS.append("below")
             if MML[i] > MML[i - 1] and df["Spread"][i] < df["Spread"][i-1]:
                 state = "In a up-trend. You can buy ! (it might be early) :white_sun_cloud: "
             else:
                 state = "Wait for buy... :cloud: "
 
-        if i > max_average + min_average:
-            if STATUS[i-max_average] != STATUS[i-(max_average+1)]:
-                if STATUS[i-max_average] == "above":
+        if i > 0:
+            if STATUS[i] != STATUS[i-1]:
+                if STATUS[i] == "above":
                     if df['MM_Volume'][i] >= 50 and MML[i] > MML[i - 1]:
                         state = "Buy Today!! :sunny: "
                     elif MML[i] > MML[i - 1]:
-                        state = "You can buy but it's not a volume trend :white_sun_small_cloud: "
+                        state = "You can buy but it's not a volume trend :sunny: "
                     else:
                         state = "Wait :cloud: "
 
-                elif STATUS[i-max_average] == "below":
+                elif STATUS[i] == "below":
                     state = "Sell Today!! :zap: "
 
         df['Status'][i] = state
