@@ -1,6 +1,6 @@
 # Crypto Bot Documention  
 ## Principle
-The algorithm is based on the moving average algorithm.
+This project is based on sentiment analysis on twitter + algorithm based on the moving average algorithm.
 The first step of this algorithm is to create two curves :
 * Short moving average curve (2 periods in this case)
 * Long moving average curve (20 periods in this case)
@@ -90,6 +90,11 @@ the long term moving average (MML) from __above__.
 Situation | Recommendation
 ------------ | -------------
 Case 4 fulfilled | Sell Today!! (or Sell Now!!)
+
+### Twitter Sentiment analysis
+
+This part is requesting data to the [twitter trend api project](https://github.com/FredericGodest/TwitterTrendAPI).
+It is an algorithm based on NLTK which is really basic but is will be enhanced in the near future.
 
 
 
