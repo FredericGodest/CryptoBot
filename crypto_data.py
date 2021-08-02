@@ -1,8 +1,26 @@
-import requests
 import json
 import pandas as pd
 import datetime as dt
 pd.options.mode.chained_assignment = None #needed to avoid warning in the log file
+import requests
+
+
+def twitter_status():
+    BASE = "https://twittetrandapi.herokuapp.com/"
+    response = requests.get(BASE + "Bitcoin")
+    d = json.loads(response.text)
+    score = float(d["final_score"])
+    tweet = str(d["best_tweet"])
+    if score <= -0.01:
+        info_score = "négatif :cloud: "
+    elif score <= 0.12:
+        info_score = "neutre :white_sun_cloud:"
+    else:
+        info_score = "positif :sunny:"
+    info = ["Meilleur tweet :arrow_right: " + tweet,
+            "Sentiment global :arrow_right: " + info_score]
+
+    return info
 
 def get_data(symbol, interval, dict):
     try:
@@ -89,7 +107,7 @@ def get_data(symbol, interval, dict):
 
 #Message creation from data retrieved
 def get_status(interval):
-    MESSAGE = []
+    MESSAGE = twitter_status()
     dict = {"BITCOIN": 'BTCUSDT',
             "ETH": 'ETHUSDT',
             "XRP": "XRPUSDT",

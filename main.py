@@ -43,14 +43,6 @@ async def on_ready():
   print("Crypto Bot Connected !")
   while True:
     current_time_day = datetime.now().strftime("%H:%M:%S")
-    #current_time_hour = datetime.now().strftime("%M:%S")
-
-    #EVERY HOURS
-    #if str(current_time_hour) == "00:00":
-      #info = get_crypto_info('1h')
-      #if info:
-        #channel = client.get_channel(int(daily_crypto))
-        #await channel.send(info)
 
     #MORNING
     if str(current_time_day) == "06:30:00": #2 hours of delay
