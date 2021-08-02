@@ -1,11 +1,19 @@
+"""
+This module is gathering all the data needed from Binance and Twitter Trend API to compile a message ready to use on Discord.
+"""
+
 import json
 import pandas as pd
 import datetime as dt
-pd.options.mode.chained_assignment = None #needed to avoid warning in the log file
 import requests
+pd.options.mode.chained_assignment = None #needed to avoid warning in the log file
 
+def twitter_status() -> list:
+    """
+    This function is using twittertrendAPI to retrieve data with a given hashtag.
 
-def twitter_status():
+    :return info : information from the given hashtag
+    """
     BASE = "https://twittetrandapi.herokuapp.com/"
     response = requests.get(BASE + "Bitcoin")
     d = json.loads(response.text)
@@ -22,9 +30,19 @@ def twitter_status():
 
     return info
 
-def get_data(symbol, interval, dict):
+def get_data(symbol:str, interval : str, dict_symbol : dict) -> (list, bool):
+    """
+    This function is getting all the data from Binance and it compute everything with the moving average algorithm.
+
+    :param symbol : This is the symbol of the crypto currency.
+    :param interval : This is the interval of the analysis. It can be 1d for one day or 1h for one hour.
+    :param dict_symbol : This is the dictionnary of the allowed symbol.
+
+    :return df : The function returns a data frame with all the information needed.
+    :return success : It also return if the function did work or not.
+    """
     try:
-        symbol = dict[symbol]
+        symbol = dict_symbol[symbol]
     except KeyError:
         success = False
         df = None
@@ -105,10 +123,15 @@ def get_data(symbol, interval, dict):
     success = True
     return df, success
 
-#Message creation from data retrieved
-def get_status(interval):
+def get_status(interval :str ) -> str:
+    """
+    This function is compiling the data retrieved from the from the function get_data and from the twitter trend api.
+
+    :param interval : This is the interval of the analysis. It can be 1d for one day or 1h for one hour.
+    :return MESSAGE : The message ready to be deployed on discord.
+    """
     MESSAGE = twitter_status()
-    dict = {"BITCOIN": 'BTCUSDT',
+    dict_symbol = {"BITCOIN": 'BTCUSDT',
             "ETH": 'ETHUSDT',
             "XRP": "XRPUSDT",
             "LITECOIN": 'LTCUSDT',
@@ -117,17 +140,17 @@ def get_status(interval):
             "BNB": "BNBUSDT",
             "VET": "VETUSDT"}
 
-    for i in range(0, len(dict.items())):
-        symbol = list(dict.keys())[i]
-        df, success = get_data(symbol, interval, dict)
+    for i in range(0, len(dict_symbol.items())):
+        symbol = list(dict_symbolct.keys())[i]
+        df, success = get_data(symbol, interval, dict_symbol)
 
         if success:
             price = float((df['close'][-1]))
             price = '{:,.3f}'.format(price).replace(',', ' ')
-            msg = list(dict.keys())[i] + " = " + str(price) + "$ :arrow_right: " + df['Status'][-1]
+            msg = list(dict_symbol.keys())[i] + " = " + str(price) + "$ :arrow_right: " + df['Status'][-1]
 
         else:
-            msg = "Symbol " + list(dict.keys())[i] + " do not exist."
+            msg = "Symbol " + list(dict_symbol.keys())[i] + " do not exist."
 
         MESSAGE.append(msg)
 

@@ -1,3 +1,7 @@
+"""
+This module is sending message to discord channel with the message retrieved from crypto_data.py.
+"""
+
 import discord
 from datetime import datetime
 from dotenv import dotenv_values
@@ -18,7 +22,13 @@ else:
   weekly_crypto = config['channel_general']
 
 #GET DATA PART
-def get_crypto_info(interval):
+def get_crypto_info(interval : str):
+  """
+  This function is preparing the message for discord.
+
+  :param interval: This is the interval of the analysis. It can be 1d for one day or 1h for one hour.
+  :return info: the message to send to discord channel
+  """
   messages = crypto_data.get_status(interval)
   if interval == '1d':
     info = '\n'.join(messages)
@@ -33,6 +43,7 @@ def get_crypto_info(interval):
         message = message.replace("Today", "Now")
         info.append(message)
     info = '\n'.join(info)
+
     return info
 
 
