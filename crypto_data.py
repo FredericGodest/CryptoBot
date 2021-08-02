@@ -26,7 +26,8 @@ def twitter_status() -> list:
     else:
         info_score = "positif :sunny:"
     info = ["Meilleur tweet :arrow_right: " + tweet,
-            "Sentiment global :arrow_right: " + info_score]
+            "Sentiment global :arrow_right: " + info_score,
+            ""]
 
     return info
 
