@@ -19,6 +19,7 @@ def twitter_status() -> list:
     d = json.loads(response.text)
     score = float(d["final_score"])
     tweet = str(d["best_tweet"])
+    account = str(d["best_account"])
     if score <= -0.01:
         info_score = "négatif :cloud: "
     elif score <= 0.12:
@@ -26,6 +27,7 @@ def twitter_status() -> list:
     else:
         info_score = "positif :sunny:"
     info = ["**__Analyse Twitter :bird: :__**",
+            "Meilleur compte twitter :arrow_right: " + account,
             "Meilleur tweet :arrow_right: " + tweet,
             "Sentiment global (30 derniers tweets):arrow_right: " + info_score,
             "   ",
