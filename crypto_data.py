@@ -122,20 +122,25 @@ def get_data(symbol:str, interval : str, dict_symbol : dict) -> (list, bool):
                         state = "Attendez :cloud: "
 
                 elif STATUS[i] == "below":
-                    state = "Sell Today!! :zap: "
+                    state = "Vendez aujourd'hui!! :zap: "
 
         df['Status'][i] = state
     success = True
     return df, success
 
-def get_status(interval :str ) -> str:
+def get_status(interval :str, tweet :bool) -> str:
     """
     This function is compiling the data retrieved from the from the function get_data and from the twitter trend api.
 
     :param interval : This is the interval of the analysis. It can be 1d for one day or 1h for one hour.
+    :param tweet: This is defining if the tweet analysis has to be done or not.
     :return MESSAGE : The message ready to be deployed on discord.
     """
-    MESSAGE = twitter_status()
+    if tweet:
+        MESSAGE = twitter_status()
+    else :
+        MESSAGE = [""]
+
     dict_symbol = {"BITCOIN": 'BTCUSDT',
             "ETH": 'ETHUSDT',
             "XRP": "XRPUSDT",
@@ -143,7 +148,8 @@ def get_status(interval :str ) -> str:
             "DOGECOIN": 'DOGEUSDT',
             "CAKECOIN": 'CAKEUSDT',
             "BNB": "BNBUSDT",
-            "VET": "VETUSDT"}
+            "VET": "VETUSDT",
+            "ADA": "ADAUSDT"}
 
     for i in range(0, len(dict_symbol.items())):
         symbol = list(dict_symbol.keys())[i]
