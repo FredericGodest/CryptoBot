@@ -51,12 +51,15 @@ def get_crypto_info(interval : str, tweet: bool):
 
 #DISCORD PART
 client = discord.Client()
+
 @client.event
 async def on_ready():
   print("Crypto Bot Connected !")
+  memory = "nothing"  # memory for info alert
   while True:
     current_time_day = datetime.now().strftime("%H:%M:%S")
     current_time = datetime.now().strftime("%M:%S")
+    current_time = datetime.now().strftime("%S")
 
     #MORNING
     if str(current_time_day) == "06:30:00": #2 hours of delay
@@ -72,11 +75,13 @@ async def on_ready():
       await channel.send("Tendance du jour #2")
       await channel.send(info)
 
-    elif str(current_time) == "00:00": #Every Hours
+    elif str(current_time) == "00": #Every Hours
       info = get_crypto_info('1d', False)
       channel = client.get_channel(int(weekly_crypto))
       if info != "Alerte(s) direct !":
-        await channel.send(info)
+        if info != memory: #if latest in not the same as the new one
+          await channel.send(info)
+          memory = info #save info into memory
       time.sleep(1)
 
 client.run(bot_token)
