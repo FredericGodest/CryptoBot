@@ -78,7 +78,9 @@ async def on_ready():
       info = get_crypto_info('1d', False)
       channel = client.get_channel(int(weekly_crypto))
       if info != "Alerte(s) direct !":
-        if info != memory: #if latest in not the same as the new one
+        info_scan = ''.join([i for i in info if not i.isdigit()]) #remove digit
+        memory_scan = ''.join([i for i in memory if not i.isdigit()]) #remove digit
+        if info_scan != memory_scan: #if latest in not the same as the new one
           await channel.send(info)
           memory = info #save info into memory
       time.sleep(1)
