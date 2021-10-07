@@ -141,17 +141,18 @@ def get_status(interval :str, tweet :bool) -> str:
     else :
         MESSAGE = [""]
 
-    dict_symbol = {"BITCOIN": 'BTCUSDT',
-            "ETH": 'ETHUSDT',
-            "XRP": "XRPUSDT",
-            "LITECOIN": 'LTCUSDT',
-            "DOGECOIN": 'DOGEUSDT',
-            "CAKECOIN": 'CAKEUSDT',
-            "BNB": "BNBUSDT",
-            "VET": "VETUSDT",
-            "ADA": "ADAUSDT",
+    dict_symbol = {"ADA": "ADAUSDT",
             "AVALANCHE": "AVAXUSDT",
-            "SHIBA": "SHIBUSDT"}
+            "BITCOIN": 'BTCUSDT',
+            "BNB": "BNBUSDT",
+            "CAKECOIN": 'CAKEUSDT',
+            "DOGECOIN": 'DOGEUSDT',
+            "ETH": 'ETHUSDT',
+            "LITECOIN": 'LTCUSDT',
+            "SHIBA": "SHIBUSDT",
+            "VET": "VETUSDT",
+            "XRP": "XRPUSDT"
+            }
 
     for i in range(0, len(dict_symbol.items())):
         symbol = list(dict_symbol.keys())[i]
