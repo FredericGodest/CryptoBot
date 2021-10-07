@@ -149,7 +149,9 @@ def get_status(interval :str, tweet :bool) -> str:
             "CAKECOIN": 'CAKEUSDT',
             "BNB": "BNBUSDT",
             "VET": "VETUSDT",
-            "ADA": "ADAUSDT"}
+            "ADA": "ADAUSDT",
+            "AVALANCHE": "AVAXUSDT",
+            "SHIBA": "SHIBUSDT"}
 
     for i in range(0, len(dict_symbol.items())):
         symbol = list(dict_symbol.keys())[i]
@@ -157,7 +159,10 @@ def get_status(interval :str, tweet :bool) -> str:
 
         if success:
             price = float((df['close'][-1]))
-            price = '{:,.3f}'.format(price).replace(',', ' ')
+            if symbol == "SHIBA":
+                price = '{:,.6f}'.format(price).replace(',', ' ')
+            else:
+                price = '{:,.3f}'.format(price).replace(',', ' ')
             msg = list(dict_symbol.keys())[i] + " = " + str(price) + "$ :arrow_right: " + df['Status'][-1]
 
         else:

@@ -68,7 +68,7 @@ async def on_ready():
       await channel.send(info)
 
     #EVENING
-    elif str(current_time_day) == "17:30:30": #2 hours of delay
+    elif str(current_time_day) == "17:30:00": #2 hours of delay
       info = get_crypto_info('1d', True)
       channel = client.get_channel(int(weekly_crypto))
       await channel.send("Tendance du jour #2")
